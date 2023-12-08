@@ -70,7 +70,7 @@ class Hand:
             return ONE_PAIRS if JOKER in self.string_value else HIGH_CARD
 
 
-class Resolver:
+class Solver:
 
     def __init__(self, *args, **kwargs):
         self.hands = []
@@ -79,14 +79,14 @@ class Resolver:
                 hand_value, bid_amount = [match.group() for match in re.finditer(r'[AKQJT\d]+', line)]
                 self.hands.append(Hand(hand_value, int(bid_amount)))
                 
-    def resolve_first_part(self):
+    def solve_first_part(self):
         result = 0
         sorted_hands = sorted(self.hands, key=lambda h: (h.strength, h.sorted_value))
         for rank, hand in enumerate(sorted_hands, start=1):
             result += rank * hand.bid_amount
         return result
 
-    def resolve_second_part(self):
+    def solve_second_part(self):
         result = 0
         sorted_hands = sorted(self.hands, key=lambda h: (h.strength_with_joker, h.sorted_value_with_joker))
         for rank, hand in enumerate(sorted_hands, start=1):
@@ -94,6 +94,6 @@ class Resolver:
         return result
         
 
-resolver = Resolver()
-print(f'Solution 1 = {resolver.resolve_first_part()}')
-print(f'Solution 2 = {resolver.resolve_second_part()}')
+solver = Solver()
+print(f'Solution 1 = {solver.solve_first_part()}')
+print(f'Solution 2 = {solver.solve_second_part()}')

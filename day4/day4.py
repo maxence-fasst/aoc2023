@@ -18,16 +18,16 @@ class Card:
         return 0 if corresponding_numbers == 0 else 2**(corresponding_numbers - 1)
 
 
-class Resolver:
+class Solver:
 
     def __init__(self, *args, **kwargs):
         with open('input.txt') as f:
             self.cards = [Card(line.replace('\n', '')) for line in f.readlines()]
               
-    def resolve_first_part(self):
+    def solve_first_part(self):
         return sum(card.get_score() for card in self.cards)
 
-    def resolve_second_part(self):
+    def solve_second_part(self):
         cards_with_copy = { index: 1 for index in range(len(self.cards))}
         for index, card in enumerate(self.cards):
             corresponding_numbers = card.get_corresponding_numbers_count()
@@ -40,6 +40,6 @@ class Resolver:
 
 
 
-resolver = Resolver()
-print(f'Solution 1 = {resolver.resolve_first_part()}')
-print(f'Solution 2 = {resolver.resolve_second_part()}')
+solver = Solver()
+print(f'Solution 1 = {solver.solve_first_part()}')
+print(f'Solution 2 = {solver.solve_second_part()}')

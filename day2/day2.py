@@ -1,7 +1,7 @@
 import re
 from itertools import groupby
 
-class Resolver:
+class Solver:
 
     MAX_VALUES = {
         'red': 12,
@@ -23,14 +23,14 @@ class Resolver:
                 return False
         return True
                                   
-    def resolve_first_part(self):
+    def solve_first_part(self):
         result = 0
         for game_id, game in self.games.items():
             if all(self._is_set_possible(cube_set) for cube_set in game.split(';')):
                 result += game_id
         return result
     
-    def resolve_second_part(self):
+    def solve_second_part(self):
         by_color = lambda match: match[2]
         powers = []
         for game in self.games.values():
@@ -43,6 +43,6 @@ class Resolver:
         return sum(powers)
 
 
-resolver = Resolver()
-print(f'Solution 1 = {resolver.resolve_first_part()}')
-print(f'Solution 2 = {resolver.resolve_second_part()}')
+solver = Solver()
+print(f'Solution 1 = {solver.solve_first_part()}')
+print(f'Solution 2 = {solver.solve_second_part()}')

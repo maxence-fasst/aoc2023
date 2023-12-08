@@ -1,7 +1,7 @@
 import math
 import re
 
-class Resolver:
+class Solver:
 
     REGEX_NUMBERS = r'\d+'
 
@@ -24,7 +24,7 @@ class Resolver:
                 line_result += int(match.group())
         return line_result
                      
-    def resolve_first_part(self):
+    def solve_first_part(self):
         result = 0
         for index, line in enumerate(self.data):
             result += self._get_line_result(index, line)
@@ -59,7 +59,7 @@ class Resolver:
             return math.prod(numbers)
         return 0
 
-    def resolve_second_part(self):
+    def solve_second_part(self):
         result = 0
         for index_line, line in enumerate(self.data):
             for potential_gear_index in [match.start() for match in re.finditer(r'\*', line)]:
@@ -67,6 +67,6 @@ class Resolver:
         return result
 
 
-resolver = Resolver()
-print(f'Solution 1 = {resolver.resolve_first_part()}')
-print(f'Solution 2 = {resolver.resolve_second_part()}')
+solver = Solver()
+print(f'Solution 1 = {solver.solve_first_part()}')
+print(f'Solution 2 = {solver.solve_second_part()}')

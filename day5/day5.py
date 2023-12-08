@@ -8,7 +8,7 @@ class Range:
         self.end = start + length - 1
         self.value_to_add = corresponding_value - start
 
-class Resolver:
+class Solver:
 
     def __init__(self, *args, **kwargs):
         with open('input.txt') as f:
@@ -28,7 +28,7 @@ class Resolver:
                     actual_map.append(Range(line))
             self.maps.append(actual_map)
                 
-    def resolve_first_part(self):
+    def solve_first_part(self):
         result = []
         for seed in self.seeds:
             actual_value = seed
@@ -77,7 +77,7 @@ class Resolver:
         return self._get_mapped_ranges(map_index + 1,*result)
             
 
-    def resolve_second_part(self):
+    def solve_second_part(self):
         iter_seeds = iter(self.seeds)
         ranges = []
         for seed_start in iter_seeds:
@@ -87,6 +87,6 @@ class Resolver:
         return sorted(ranges, key=lambda r: r[0])[0][0]
                     
 
-resolver = Resolver()
-print(f'Solution 1 = {resolver.resolve_first_part()}')
-print(f'Solution 2 = {resolver.resolve_second_part()}')
+solver = Solver()
+print(f'Solution 1 = {solver.solve_first_part()}')
+print(f'Solution 2 = {solver.solve_second_part()}')

@@ -1,6 +1,6 @@
 import re
 
-class Resolver:
+class Solver:
 
     def __init__(self, *args, **kwargs):
         with open('input.txt') as f:
@@ -18,7 +18,7 @@ class Resolver:
         'nine': '9'
     }
 
-    def _resolve(self, with_string_numbers=False):
+    def _solve(self, with_string_numbers=False):
         regex = re.compile(r"(?=(\d|one|two|three|four|five|six|seven|eight|nine))") if with_string_numbers else re.compile(r'\d') 
         result = 0
         for line in self.data:
@@ -27,13 +27,13 @@ class Resolver:
             result += int(f'{self.REPLACEMENTS.get(start, start)}{self.REPLACEMENTS.get(end, end)}')
         return result
 
-    def resolve_first_part(self):
-        return self._resolve()
+    def solve_first_part(self):
+        return self._solve()
     
-    def resolve_second_part(self):
-        return self._resolve(with_string_numbers=True)
+    def solve_second_part(self):
+        return self._solve(with_string_numbers=True)
 
 
-resolver = Resolver()
-print(f'Solution 1 = {resolver.resolve_first_part()}')
-print(f'Solution 2 = {resolver.resolve_second_part()}')
+solver = Solver()
+print(f'Solution 1 = {solver.solve_first_part()}')
+print(f'Solution 2 = {solver.solve_second_part()}')
