@@ -62,18 +62,29 @@ class Solver:
         path.append(next_coords)
         return next_coords, from_direction, path
         
-        
-
-    def solve_first_part(self):
+    def _get_path(self):
         next = None
         from_direction = None
         path = []
         while next != self.start:
             next, from_direction, path = self._get_next(next or self.start, from_direction=from_direction, path=path)
+        return path   
+
+    def solve_first_part(self):
+        path = self._get_path()
         return len(path) // 2
 
     def solve_second_part(self):
-        pass
+        from shapely import Point, Polygon
+        path = self._get_path()
+        polygon = Polygon([(x, y) for y, x in path])
+        nb_points_in_area = 0
+        for y in range(len(self.grid)):
+            for x in range(len(self.grid[y])):
+                if polygon.contains(Point(x, y)):
+                    nb_points_in_area += 1
+        return nb_points_in_area
+
         
 solver = Solver()
 print(f'Solution 1 = {solver.solve_first_part()}')
