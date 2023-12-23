@@ -58,6 +58,7 @@ class Solver:
         return graph
 
     def solve_second_part(self):
+        # Thx @debnet
         graph = self._create_reduced_graph()
         return max(nx.path_weight(graph, path, "weight") for path in nx.all_simple_paths(graph, self.start, self.end))
 
