@@ -25,12 +25,6 @@ class Module:
         self.targets = targets.split(', ')
         self.last_pulse_sent = LOW_PULSE
         self.parents = []
-
-    def __str__(self, *args, **kwargs):
-        return f'{self.type} - {self.name}'
-    
-    def __repr__(self, *args, **kwargs):
-        return str(self)
     
     def switch(self):
         self.state = ON if self.state == OFF else OFF
